@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TinkerCard</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="/images/Tinkercad_logo.webp" type="image/x-icon">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Belanosima:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="bg">
+     
+      <details>
+        <summary>
+          Write a Program to enable Switching effect in LED using Arduino
+        </summary>
+        <p>
+          <h3>Objective: To Combine basic hardware and software interactions,offering a tangible demonstration of how code can control physical components.</h3>
+          <!-- <h4 >Component Required:</h4>
+          <ul>
+
+              <li>
+                  
+                  Name: U1 , Quantity:1 , Component: Arduino Uno R3 
+                </li>
+                <li>
+                    
+                    Name: L1 , Quantity:1 , Component: Light bulb
+                </li>
+                <li>
+                    
+                    Name: R2
+R3 , Quantity:1 , Component: 	1 kΩ Resistor
+                </li>
+            </ul> -->
+
+            <div>
+                <img src="/images/m8.jpg" alt="defo">
+            </div>
+
+         <code>
+void setup()
+{
+  pinMode(8, OUTPUT);
+}
+
+void loop()
+{
+  digitalWrite(8, HIGH);
+  delay(1000); // Wait for 1000 millisecond(s)
+  digitalWrite(8, LOW);
+  delay(1000); // Wait for 1000 millisecond(s)
+}
+         </code>
+        </p>
+      </details>
+         <details>
+        <summary>
+          Write a Program to interface light Sensitive Registor with Arduino
+        </summary>
+        <p>
+          <h3>Objective: To Glow a bulb by sensing the light sensitive Resistor, which is also known as Light Dependent Resistor(LDR). USING ARDUINO</h3>
+          <!-- <h4 >Component Required:</h4>
+          <ul>
+
+              <li>
+                  
+                  Name: U1, Quantity:1 , Component: Arduino Uno R3 
+                </li>
+                <li>
+                    
+                    Name: L1 , Quantity:1 , Component: Red LED 
+                </li>
+                <li>
+                    
+                    Name: R1 , Quantity:1 , Component: 1 k Ω Resistor 
+                </li>
+                <li>
+                    
+                    Name: R2 , Quantity:1 , Component: 10 k Ω Resistor 
+                </li>
+                  <li>
+                    
+                    Name: R3 , Quantity:1 , Component: Photoresistor 
+                </li>
+            </ul> -->
+
+            <div>
+                <img src="/images/m9.jpg" alt="defo">
+            </div>
+
+         <code>
+ int ldr=A3;
+int bulb=7;
+
+
+void setup()
+{
+  pinMode(bulb,OUTPUT);
+  pinMode(ldr,INPUT);
+}
+void loop()
+{
+  if(analogRead(ldr)>500)
+  {
+    digitalWrite(bulb,0);
+  }
+  else{
+    digitalWrite(bulb,1);
+  }
+}
+         </code>
+        </p>
+      </details>
+               <details>
+        <summary>
+          Write a Program to interface Temperature sensor with Arduino
+        </summary>
+        <p>
+          <h3>Objective: To known the type of sensors used to measure the temperature of the surroundings using Arduino and display the Result on serial Monitor or any other availaible display units.</h3>
+          <!-- <h4 >Component Required:</h4>
+          <ul>
+
+              <li>
+                  
+                  Name: U1, Quantity:1 , Component: Arduino Uno R3 
+                </li>
+                <li>
+                    
+                    Name: D1 , Quantity:1 , Component: Red LED 
+                </li>
+                <li>
+                    
+                    Name: D2 , Quantity:1 , Component: Yellow LED 
+                </li>
+                <li>
+                    
+                    Name: D3 , Quantity:1 , Component: Green LED
+                </li>
+                  <li>
+                    
+                    Name: U3 , Quantity:1 , Component: Temperature Sensor(TMP36) 
+                </li>
+                    <li>
+                    
+                    Name: R1,R2,R3 , Quantity:3 , Component: 220 Ω
+                </li>
+            </ul> -->
+
+            <div>
+                <img src="/images/c2.jpg" alt="defo">
+            </div>
+
+         <code>
+const int TempSensor = A0;
+const int ledCool = 6;
+const int ledNormal = 5;
+const int ledHot = 7;
+
+void setup(){
+  pinMode(ledCool,OUTPUT);
+  pinMode(ledNormal,OUTPUT);
+  pinMode(ledHot,OUTPUT);
+}
+
+void loop(){
+  int sensorValue = analogRead(TempSensor);
+  float voltage = (sensorValue/1024.0)*5.0;
+  float temperatureC = (voltage - 0.5)*100;
+  
+  Serial.print("Temperature: ");
+  Serial.print(temperatureC);
+  Serial.println("C");
+  
+  if(temperatureC < 20){
+    digitalWrite(ledCool,HIGH);
+    digitalWrite(ledNormal,LOW);
+    digitalWrite(ledHot,LOW);
+  } else if(temperatureC >= 20 && temperatureC <30){
+    digitalWrite(ledCool,LOW);
+    digitalWrite(ledNormal,HIGH);
+    digitalWrite(ledHot,LOW);
+  } else {
+    digitalWrite(ledCool,LOW);
+    digitalWrite(ledNormal,LOW);
+    digitalWrite(ledHot,HIGH);
+  }
+  delay(500);
+}
+         </code>
+        </p>
+      </details>
+          <details>
+        <summary>
+          Write a Program to interface Arduino with Humidity Sensor
+        </summary>
+        <p>
+          <h3>Objective: To know The Procedure of Interface to Humidity Sensor with Arduino and Provide the Output on Serial Monitor or any availaible display. To know an Alternative Approach For Indicating humidity control Rate by using an LED.</h3>
+          <!-- <h4 >Component Required:</h4>
+          <ul>
+
+              <li>
+                  
+                  Name: U1, Quantity:1 , Component: Arduino Uno R3 
+                </li>
+              <li>
+                  
+                  Name: P1, Quantity:1 , Component: Potentiometer
+                </li>
+              
+            </ul> -->
+
+            <div>
+                <img src="/images/c4.jpg" alt="defo">
+            </div>
+
+         <code>
+const int analogIn = A1;
+int humiditySensorOutput= 0;
+void setup()
+{
+  Serial.begin(9600);
+}
+void loop()
+{
+  humiditySensorOutput= analogRead(analogIn);
+  int humidityPercentage= map(humiditySensorOutput,0,1023,10,70);
+  Serial.print("Humidity: ");
+  Serial.print(humidityPercentage);
+  Serial.println("%");
+  delay(5000);
+}
+         </code>
+        </p>
+      </details>
+        <details>
+        <summary>
+          Write a Program to interface Arduino with UltraSonic Sensor
+        </summary>
+        <p>
+          <h3>Objective: To make Student Aware about the Procedures for interfacing an Arduino Board with an UltraSonic Sensor. This Practical will Provide an idea of implementing a range of finding based Projects.</h3>
+          <!-- <h4 >Component Required:</h4>
+          <ul>
+
+              <li>
+                  
+                  Name: U1, Quantity:1 , Component: Arduino Uno R3 
+                </li>
+              <li>
+                  
+                  Name: D1, Quantity:1 , Component: UltraSonic Sensor(HC-SR04)
+                </li>
+              
+            </ul> -->
+
+            <div>
+                <img src="/images/c5.jpg" alt="defo">
+            </div>
+
+         <code>
+const int trigPin = 9;
+const int echoPin = 10;
+
+long duration;
+int distance;
+void setup()
+{
+  Serial.begin(9600);
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
+}
+
+void loop()
+{
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+  
+  duration = pulseIn(echoPin,HIGH);
+  
+  distance = duration * 0.034 / 2;
+  
+  Serial.print("Distance: ");
+  Serial.print(distance);
+  Serial.println(" cm");
+  
+  delay(500);
+}
+         </code>
+        </p>
+      </details>
+          <details>
+        <summary>
+          Write a Program to interface Parsive Infrared Sensor
+        </summary>
+        <p>
+          <h3>Objective: To make Student understand the procedure used for interfacing a Digital Infrared sensor(more specifically,PIR(Parsive Infrared Sensor)).It will help students to explore various object Tracking based project.</h3>
+          <!-- <h4 >Component Required:</h4>
+          <ul>
+
+              <li>
+                  
+                  Name: U1, Quantity:1 , Component: Arduino Uno R3 
+                </li>
+              <li>
+                  
+                  Name: D1, Quantity:1 , Component: Red LED
+                </li>
+              <li>
+                  
+                  Name: P1R1, Quantity:1 , Component: PIR Sensor
+                </li>
+                    <li>
+                  
+                  Name: R1, Quantity:1 , Component: 1 k Ω
+                </li>
+              
+            </ul> -->
+
+            <div>
+                <img src="/images/c6.jpg" alt="defo">
+            </div>
+
+         <code>
+int sensorState= 0;
+void setup()
+{
+  pinMode(2,INPUT);
+  pinMode(LED_BUILTIN,OUTPUT);
+}
+void loop()
+{
+  sensorState = digitalRead(2);
+  
+  if(sensorState == HIGH)
+  {
+    digitalWrite(LED_BUILTIN,HIGH);
+  }
+  else
+  {
+    digitalWrite(LED_BUILTIN,LOW);
+  }
+  delay(10);
+}
+         </code>
+        </p>
+      </details>
+         <details>
+        <summary>
+          Write a Program to interface Arduino with Gas Sensor
+        </summary>
+        <p>
+          <h3>Objective: To make Student understand the procedure require to interface a Gas Sensor with an arduino.It will help student to explore various Gas leakage or smoke presence detection based Projects</h3>
+          <!-- <h4 >Component Required:</h4>
+          <ul>
+
+              <li>
+                  
+                  Name: U1, Quantity:1 , Component: Arduino Uno R3 
+                </li>
+              <li>
+                  
+                  Name: D1, Quantity:1 , Component: Red LED
+                </li>
+              <li>
+                  
+                  Name: R1, Quantity:1 , Component: Resistor
+                </li>
+                    <li>
+                  
+                  Name: R2, Quantity:1 , Component: Resistor
+                </li>
+              
+            </ul> -->
+
+            <div>
+                <img src="/images/c7.jpg" alt="defo">
+            </div>
+
+         <code>
+int LED=A1;
+//const int gas=0;
+int MQ2pin=A0;
+void setup(){
+	Serial.begin(9600);
+  	pinMode(LED,OUTPUT);
+}
+void loop(){
+	float sensorValue,MQ2pin;
+  	 digitalWrite(LED,LOW);
+ 	sensorValue=analogRead(MQ2pin);
+  if(sensorValue>=200){
+    digitalWrite(LED,HIGH);
+    Serial.print(sensorValue);
+    Serial.println(" | Smoke Detected");
+  }
+  else{
+    digitalWrite(LED,LOW);
+    Serial.println("Sensor Value : ");
+    Serial.println(sensorValue);
+  }
+     delay(1000);
+  }
+         </code>
+        </p>
+      </details>
+        <details>
+        <summary>
+          Write a Program to interface an Arduino with Servo Motor
+        </summary>
+        <p>
+          <h3>Objective: To make Student understand the procedure require to interface a Servo Motor with an Arduino. It will help students to explore various robot related automation Projects</h3>
+          <!-- <h4 >Component Required:</h4>
+          <ul>
+
+              <li>
+                  
+                  Name: U1, Quantity:1 , Component: Arduino Uno R3 
+                </li>
+              <li>
+                  
+                  Name: SERVO1, Quantity:1 , Component: Positional Micro Servo
+                </li>
+            
+            </ul> -->
+
+            <div>
+                <img src="/images/c8.jpg" alt="defo">
+            </div>
+
+         <code>
+
+#include< Servo.h>
+Servo servoBase;
+void setup(){
+  servoBase.attach(A1);
+  servoBase.write(0);
+}
+void loop(){
+  for(int i=0;i<=180;i=i+10){
+    servoBase.write(i);
+    delay(700);
+  }
+}
+         </code>
+        </p>
+      </details>
+    </div>
+  </body>
+</html>
